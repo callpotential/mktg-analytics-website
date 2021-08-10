@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 Plugin Name: Tracking Web Reservation Conversions
 Description: Tracking Web Reservation Conversions, Google Ads data Submitting to API Endpoint.
 Version: 1.0
@@ -23,9 +23,7 @@ function tracking_deactivation() {
 function tracking_gclid() {
     // when not on location page we are doing unset session.
     if( isset($_GET['gclid'])  ) {
-
         $_SESSION['_gclid'] = $_GET['gclid'];
-        
     }
 }
 add_action('wp_head', 'tracking_gclid');
@@ -57,7 +55,8 @@ function tracking_submit_to_api_endpoint() {
         }
 
         $t_stamp = gmdate("Y-m-d h:m:s+|-h:m");
-        $URL = "https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink";
+        $URL = get_field('ndss_tracking_endpoint','option');
+        //"https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink";
 
         $gclid = $reserv_id = $gcid = '-';
 
@@ -88,8 +87,8 @@ function tracking_submit_to_api_endpoint() {
                     'corp_code'      => $corp_code,
                     'location_code'  => $loc_code,
                     'reservation_id' => $reserv_id,
-                    'gclid'          => $gcid,
-                    'gcid'           => $gclid,
+                    'gclid'          => $gclid,
+                    'gcid'           => $gcid,
                     'glsrc'          => "-",
                     'timestamp_utc'  => $t_stamp,
                 );
