@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 Plugin Name: Tracking Web Reservation Conversions
 Description: Tracking Web Reservation Conversions, Google Ads data Submitting to API Endpoint.
 Version: 1.0
@@ -8,7 +8,7 @@ License: GPLv2
 */
 
 
- define ( 'TRACKING_PLUGIN_URL', plugin_dir_url(__FILE__));
+define ( 'TRACKING_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 register_activation_hook(__FILE__, 'tracking_activation');
 register_deactivation_hook(__FILE__, 'tracking_deactivation');
@@ -25,6 +25,8 @@ function tracking_gclid() {
     if( isset($_GET['gclid'])  ) {
         $_SESSION['_gclid'] = $_GET['gclid'];
     }
+
+
 }
 add_action('wp_head', 'tracking_gclid');
 
@@ -89,7 +91,7 @@ function tracking_submit_to_api_endpoint() {
                     'reservation_id' => $reserv_id,
                     'gclid'          => $gclid,
                     'gcid'           => $gcid,
-                    'glsrc'          => "-",
+                    //'gclsrc'          => "",
                     'timestamp_utc'  => $t_stamp,
                 );
         $body = wp_json_encode( $body );
@@ -116,6 +118,7 @@ function tracking_submit_to_api_endpoint() {
 
 
             if ( is_wp_error( $response ) ) {
+                print_r($body);
                 echo "--fail--";
                 print_r($response);
             }else{
