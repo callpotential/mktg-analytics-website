@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: Tracking Web Reservation Conversions
 Description: Tracking Web Reservation Conversions, Google Ads data Submitting to API Endpoint.
 Version: 1.0
