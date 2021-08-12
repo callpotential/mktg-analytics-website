@@ -44,9 +44,9 @@
 
 	    if( valid ) {
 
-			var today = new Date();
-			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+'+|-'+today.getHours() + ":" + today.getMinutes();
+			//var today = new Date();
+			//var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+			//var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+'+|-'+today.getHours() + ":" + today.getMinutes();
 
 			//console.log(date+' '+time);
 
@@ -68,7 +68,7 @@
 				gclid : parameters.gclid,
 				gcid : parameters.gcid,
 				//glsrc : '-',
-				timestamp_utc: date+' '+time,
+				//timestamp_utc: date+' '+time,
 			}));
 
 		}else{
