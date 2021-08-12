@@ -92,7 +92,7 @@ function tracking_submit_to_api_endpoint() {
                     'gclid'          => $gclid,
                     'gcid'           => $gcid,
                     //'gclsrc'          => "",
-                    'timestamp_utc'  => $t_stamp,
+                    //'timestamp_utc'  => $t_stamp,
                 );
         $body = wp_json_encode( $body );
 
