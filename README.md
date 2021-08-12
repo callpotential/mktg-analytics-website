@@ -13,3 +13,9 @@ JS Plugin Documentation how to Use:
           gcid: 'ga_test',
     });
     document.body.appendChild(div);
+   
+   
+- For use JS plugin need to include one JS file "ndss_tracking.js"
+- Then need to pass all parameter in this function gc_tracking(); and all parameters are required.
+- After calling gc_tracking() funcation it will submit all values at API
+- API response will show on console even success or any kind of error.
