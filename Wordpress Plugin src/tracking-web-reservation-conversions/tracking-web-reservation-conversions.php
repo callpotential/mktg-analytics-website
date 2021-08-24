@@ -24,7 +24,9 @@ function tracking_gclid() {
     // when not on location page we are doing unset session.
     if( isset($_GET['gclid'])  ) {
         $_SESSION['_gclid'] = $_GET['gclid'];
+        $_SESSION['url_gclid'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
+    
 
 
 }
@@ -60,7 +62,7 @@ function tracking_submit_to_api_endpoint() {
         $URL = get_field('ndss_tracking_endpoint','option');
         //"https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink";
 
-        $gclid = $reserv_id = $gcid = '-';
+        $gclid = $reserv_id = $gcid = $url_gclid = '-';
 
         if( isset($_COOKIE['_ga']) ) {
             $gcid = $_COOKIE['_ga'];
@@ -68,6 +70,9 @@ function tracking_submit_to_api_endpoint() {
 
         if( isset($_SESSION['_gclid']) ) {
             $gclid = $_SESSION['_gclid'];
+        }
+        if( isset($_SESSION['url_gclid']) ) {
+            $url_gclid = $_SESSION['url_gclid'];
         }
         if( isset($_SESSION['reservation']['reservation_id']) ) {
             $reserv_id = $_SESSION['reservation']['reservation_id'];
@@ -85,12 +90,14 @@ function tracking_submit_to_api_endpoint() {
         	$corp_code = SITELINK_CORP_CODE;
         }
 
+
         $body = array(
                     'corp_code'      => $corp_code,
                     'location_code'  => $loc_code,
                     'reservation_id' => $reserv_id,
                     'gclid'          => $gclid,
                     'gcid'           => $gcid,
+                    'url'            => $url_gclid,
                     //'gclsrc'          => "",
                     //'timestamp_utc'  => $t_stamp,
                 );
