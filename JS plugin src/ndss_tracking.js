@@ -6,7 +6,6 @@
 
 (function () {
 
-
 	$.fn.gc_tracking = function( options ) {
 
 		// Default options

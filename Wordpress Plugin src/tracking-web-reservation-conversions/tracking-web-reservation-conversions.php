@@ -28,7 +28,6 @@ function tracking_gclid() {
     }
     
 
-
 }
 add_action('wp_head', 'tracking_gclid');
 
