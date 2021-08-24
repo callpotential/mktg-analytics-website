@@ -16,6 +16,7 @@
 			reservation_id: '',
 			gclid: '',
 			gcid: '',
+			url: '',
 		}, options );
 
 		valid = true;
@@ -67,6 +68,7 @@
 				reservation_id : parameters.reservation_id,
 				gclid : parameters.gclid,
 				gcid : parameters.gcid,
+				url : parameters.url,
 				//glsrc : '-',
 				//timestamp_utc: date+' '+time,
 			}));
