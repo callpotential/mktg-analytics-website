@@ -27,10 +27,7 @@ function tracking_gclid() {
         $_SESSION['url_gclid'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
     
-<<<<<<< HEAD
-=======
 
->>>>>>> 40867f8a824de259389573711a1f08a0f4349383
 
 }
 add_action('wp_head', 'tracking_gclid');
