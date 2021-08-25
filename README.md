@@ -1,6 +1,8 @@
 # mktg-analytics-website
 Open Source Repository for CallPotential Marketing Analytics and your website.
 
+Make sure you check out the Wiki for additional information and a walk thru video.
+
 
 JS Plugin Documentation 
 
