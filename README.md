@@ -2,15 +2,20 @@
 Open Source Repository for CallPotential Marketing Analytics and your website.
 
 
-JS Plugin Documentation how to Use:
+JS Plugin Documentation 
+
+How to Use:
+
+This function should be called after the successful transmission of a lead into your Property Management System
 
     let div = document.createElement('div');
     $(div).gc_tracking({
-          corp_code: 'CFF test',
-          location_code: 'HGG test',
-          reservation_id: '112222 test',
-          gclid: 'gclid.1235.test',
-          gcid: 'ga_test',
+          corp_code: 'CCTST',
+          location_code: 'TST',
+          reservation_id: '112222',
+          gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
+          gcid: '18208190227674681406',
+          url: 'https://www.abc.com/?gclid=EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
     });
     document.body.appendChild(div);
    
