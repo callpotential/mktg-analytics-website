@@ -26,3 +26,8 @@ This function should be called after the successful transmission of a lead into 
 - Then need to pass all parameter in this function gc_tracking(); and all parameters are required.
 - After calling gc_tracking() funcation it will submit all values at API
 - API response will show on console even success or any kind of error.
+
+
+How to find gcid from Cookie?
+- You can find under cookie with key name _ga 
+- Attached one image 'cookie.png' about cookie for a reference when someone visit site by google Ads.
