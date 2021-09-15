@@ -108,6 +108,9 @@ function tracking_submit_to_api_endpoint() {
         if( !$gcid ) {
             unset($body['gcid']);
         }
+        if( !$url_gclid ) {
+            $body['url'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        }
 
         $body = wp_json_encode( $body );
 
@@ -127,7 +130,7 @@ function tracking_submit_to_api_endpoint() {
         );
 
        
-        if( $_GET['dev'] || true ) {
+        if( $_GET['dev'] ) {
 
             echo "<pre>";print_r($_SESSION); 
 
