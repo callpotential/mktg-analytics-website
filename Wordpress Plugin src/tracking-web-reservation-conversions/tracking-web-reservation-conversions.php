@@ -62,7 +62,7 @@ function tracking_submit_to_api_endpoint() {
         $URL = get_field('ndss_tracking_endpoint','option');
         //"https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink";
 
-        $gclid = $reserv_id = $gcid = $url_gclid = '-';
+        $gclid = $reserv_id = $gcid = $url_gclid = '';
 
         if( isset($_COOKIE['_ga']) ) {
             $gcid = $_COOKIE['_ga'];
@@ -101,6 +101,14 @@ function tracking_submit_to_api_endpoint() {
                     //'gclsrc'          => "",
                     //'timestamp_utc'  => $t_stamp,
                 );
+
+        if( !$gclid ) {
+            unset($body['gclid']);
+        }
+        if( !$gcid ) {
+            unset($body['gcid']);
+        }
+
         $body = wp_json_encode( $body );
 
         $response = wp_remote_post( $URL, array(
@@ -119,7 +127,7 @@ function tracking_submit_to_api_endpoint() {
         );
 
        
-        if( $_GET['dev'] ) {
+        if( $_GET['dev'] || true ) {
 
             echo "<pre>";print_r($_SESSION); 
 
