@@ -13,7 +13,7 @@
 		var parameters = $.extend({
 			corp_code: '',
 			location_code: '',
-			ledger_id: '',//reservation_id
+			reservation_id: '',//ledger_id
 			gclid: '',
 			gcid: '',
 			url: '',
@@ -30,8 +30,8 @@
 			console.log ("location_code required");
 			valid = false;
 		}
-		if ( parameters.ledger_id == '' ) {
-			console.log ("ledger_id required");
+		if ( parameters.reservation_id == '' ) {
+			console.log ("reservation_id required");
 			valid = false;
 		}
 		if ( parameters.gclid == '' ) {
@@ -65,7 +65,7 @@
 			xhttp.send(JSON.stringify({
 				corp_code : parameters.corp_code,
 				location_code : parameters.location_code,
-				ledger_id : parameters.ledger_id,
+				reservation_id : parameters.reservation_id,
 				gclid : parameters.gclid,
 				gcid : parameters.gcid,
 				url : parameters.url,
