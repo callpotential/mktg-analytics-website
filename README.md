@@ -14,7 +14,7 @@ This function should be called after the successful transmission of a lead into 
     $(div).gc_tracking({
           corp_code: 'CCTST',
           location_code: 'TST',
-          reservation_id: '112222',
+          ledger_id: '112222',
           gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
           gcid: '18208190227674681406',
           url: 'https://www.abc.com/?gclid=EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
