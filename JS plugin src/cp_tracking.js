@@ -8,30 +8,35 @@
 
 
 	$.fn.gc_tracking = function( options ) {
-
 		// Default options
 		var parameters = $.extend({
-			corp_code: '',
-			location_code: '',
-			reservation_id: '',//ledger_id
+			integration_type: '',
+			account_id: '',
+			location_id: '',
+			reservation_id: '',
+			rental_id: '',
 			gclid: '',
 			gcid: '',
-			url: '',
+			url: window.location.href,
 		}, options );
 
 		valid = true;
 		$this = this;
 		
-		if ( parameters.corp_code == '' ) {
-			console.log ("corp_code required");
+		if ( parameters.integration_type == '' ) {
+			console.log ("integration_type required");
 			valid = false;
 		}
-		if ( parameters.location_code == '' ) {
-			console.log ("location_code required");
+		if ( parameters.account_id == '' ) {
+			console.log ("account_id required");
 			valid = false;
 		}
-		if ( parameters.reservation_id == '' ) {
-			console.log ("reservation_id required");
+		if ( parameters.location_id == '' ) {
+			console.log ("location_id required");
+			valid = false;
+		}
+		if ( parameters.reservation_id == '' ||  parameters.rental_id == '') {
+			console.log ("reservation_id or rental_id is required");
 			valid = false;
 		}
 		if ( parameters.gclid == '' ) {
@@ -52,7 +57,7 @@
 			//console.log(date+' '+time);
 
 			var xhttp = new XMLHttpRequest();
-			xhttp.open("POST", "https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink", true); 
+			xhttp.open("POST", "https://transmission-prod.tracking.callpotential.com/web-reservation", true); 
 			xhttp.setRequestHeader("Content-Type", "application/json");
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
