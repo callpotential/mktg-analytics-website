@@ -7,45 +7,37 @@
 (function () {
 
 
-	$.fn.gc_tracking = function( options ) {
-		// Default options
-		var parameters = $.extend({
-			integration_type: '',
-			account_id: '',
-			location_id: '',
-			reservation_id: '',
-			rental_id: '',
-			gclid: '',
-			gcid: '',
-			url: window.location.href,
-		}, options );
+	$.fn.gc_tracking = function( parameters ) {
 
 		valid = true;
 		$this = this;
 		
-		if ( parameters.integration_type == '' ) {
+		if ( !parameters.integration_type ) {
 			console.log ("integration_type required");
 			valid = false;
-		}
-		if ( parameters.account_id == '' ) {
+		
+		if ( !parameters.account_id ) {
 			console.log ("account_id required");
 			valid = false;
 		}
-		if ( parameters.location_id == '' ) {
+		if ( !parameters.location_id ) {
 			console.log ("location_id required");
 			valid = false;
 		}
-		if ( parameters.reservation_id == '' ||  parameters.rental_id == '') {
+		if ( !parameters.reservation_id || !parameters.rental_id ) {
 			console.log ("reservation_id or rental_id is required");
 			valid = false;
 		}
-		if ( parameters.gclid == '' ) {
+		if ( !parameters.gclid ) {
 			console.log ("gclid required");
 			valid = false;
 		}
-		if ( parameters.gcid == '' ) {
+		if ( !parameters.gcid ) {
 			console.log ("gcid required");
 			valid = false;
+		}
+		if ( !parameters.url ) {
+			parameters.url = window.location.href;
 		}
 
 	    if( valid ) {
@@ -68,14 +60,14 @@
 			};
 
 			xhttp.send(JSON.stringify({
-				corp_code : parameters.corp_code,
-				location_code : parameters.location_code,
+				integration_type : parameters.integration_type,
+				account_id : parameters.account_id,
+				location_id : parameters.location_id,
 				reservation_id : parameters.reservation_id,
+				rental_id : parameters.rental_id,
 				gclid : parameters.gclid,
 				gcid : parameters.gcid,
 				url : parameters.url,
-				//glsrc : '-',
-				//timestamp_utc: date+' '+time,
 			}));
 
 		}else{
