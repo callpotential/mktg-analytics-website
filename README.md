@@ -12,8 +12,8 @@ This function should be called after the successful transmission of a lead into 
 
     let div = document.createElement('div');
     $(div).gc_tracking({
-          corp_code: 'CCTST',
-          location_code: 'TST',
+          account_id: 'CCTST',
+          location_id: 'TST',
           reservation_id: '112222',
           gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
           gcid: '18208190227674681406',
@@ -26,9 +26,9 @@ For transmission of rentals without an initial lead, use the following code:
 
     let div = document.createElement('div');
     $(div).gc_tracking({
-          corp_code: 'CCTST',
-          location_code: 'TST',
-          ledger_id: '112222',
+          account_id: 'CCTST',
+          location_id: 'TST',
+          rental_id: '112222',
           gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
           gcid: '18208190227674681406',
           url: 'https://www.abc.com/?gclid=EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
