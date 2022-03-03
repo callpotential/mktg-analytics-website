@@ -12,8 +12,8 @@
 		valid = true;
 		$this = this;
 		
-		if ( !parameters.integration_type ) {
-			console.log ("integration_type required");
+		if ( !parameters.pms_type ) {
+			console.log ("pms_type required");
 			valid = false;
 		
 		if ( !parameters.account_id ) {
@@ -60,7 +60,7 @@
 			};
 
 			xhttp.send(JSON.stringify({
-				integration_type : parameters.integration_type,
+				pms_type : parameters.pms_type,
 				account_id : parameters.account_id,
 				location_id : parameters.location_id,
 				reservation_id : parameters.reservation_id,
