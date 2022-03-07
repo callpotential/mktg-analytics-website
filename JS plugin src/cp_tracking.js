@@ -28,12 +28,8 @@
 			console.log ("reservation_id or rental_id is required");
 			valid = false;
 		}
-		if ( !parameters.gclid ) {
-			console.log ("gclid required");
-			valid = false;
-		}
-		if ( !parameters.gcid ) {
-			console.log ("gcid required");
+		if ( !parameters.gclid || !parameters.gcid ) {
+			console.log ("gclid or gcid required");
 			valid = false;
 		}
 		if ( !parameters.url ) {
