@@ -44,6 +44,7 @@ add_action('genesis_loop', 'tracking_unset',99);
 
 function tracking_submit_to_api_endpoint() {
 
+
     if( isset($_GET['location']) && isset($_GET['unit']) && isset($_GET['pages'])  && $_GET['pages'] == 2 ) {
 
         if( isset($_SESSION['endpoint_submitted']) && $_SESSION['endpoint_submitted'] == $_SESSION['reservation']['reservation_id'] ) {
@@ -62,7 +63,7 @@ function tracking_submit_to_api_endpoint() {
         $URL = get_field('ndss_tracking_endpoint','option');
         //"https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink";
 
-        $gclid = $reserv_id = $gcid = $url_gclid = '';
+        $gclid = $reserv_id = $gcid = $url_gclid = $tenant_id = $rental_id = '';
 
         if( isset($_COOKIE['_ga']) ) {
             $gcid = $_COOKIE['_ga'];
@@ -76,6 +77,12 @@ function tracking_submit_to_api_endpoint() {
         }
         if( isset($_SESSION['reservation']['reservation_id']) ) {
             $reserv_id = $_SESSION['reservation']['reservation_id'];
+        }
+        if( isset($_SESSION['reservation']['tenant_id']) ) {
+            $tenant_id = $_SESSION['reservation']['tenant_id'];
+        }
+        if( isset($_SESSION['reservation']['iLedgerID']) ) {
+            $rental_id = $_SESSION['reservation']['iLedgerID'];
         }
 
         $loc_code = location_code($location_id);
@@ -92,13 +99,17 @@ function tracking_submit_to_api_endpoint() {
 
 
         $body = array(
-                    'corp_code'      => $corp_code,
-                    'location_code'  => $loc_code,
-                    'reservation_id' => $reserv_id,
-                    'gclid'          => $gclid,
-                    'gcid'           => $gcid,
-                    'url'            => $url_gclid,
-                    //'gclsrc'          => "",
+                    //'corp_code'      => $corp_code,
+                    ///'location_code'  => $loc_code,
+                    'pms_type'         => "sitelink",
+                    'account_id'       => $tenant_id,
+                    'location_id'      => $location_id,
+                    'reservation_id'   => $reserv_id,
+                    'rental_id'        => $rental_id,
+                    'gclid'            => $gclid,
+                    'gcid'             => $gcid,
+                    'url'              => $url_gclid,
+                    //'gclsrc'         => "",
                     //'timestamp_utc'  => $t_stamp,
                 );
 
@@ -132,9 +143,10 @@ function tracking_submit_to_api_endpoint() {
        
         if( $_GET['dev'] ) {
 
+
             echo "<pre>";print_r($_SESSION); 
 
-
+            echo "endpoint:".$URL;
             if ( is_wp_error( $response ) ) {
                 print_r($body);
                 echo "--fail--";
