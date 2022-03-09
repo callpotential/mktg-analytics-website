@@ -7,40 +7,33 @@
 (function () {
 
 
-	$.fn.gc_tracking = function( options ) {
-
-		// Default options
-		var parameters = $.extend({
-			corp_code: '',
-			location_code: '',
-			reservation_id: '',//ledger_id
-			gclid: '',
-			gcid: '',
-			url: '',
-		}, options );
+	$.fn.gc_tracking = function( parameters ) {
 
 		valid = true;
 		$this = this;
 		
-		if ( parameters.corp_code == '' ) {
-			console.log ("corp_code required");
+		if ( !parameters.pms_type ) {
+			console.log ("pms_type required");
+			valid = false;
+		
+		if ( !parameters.account_id ) {
+			console.log ("account_id required");
 			valid = false;
 		}
-		if ( parameters.location_code == '' ) {
-			console.log ("location_code required");
+		if ( !parameters.location_id ) {
+			console.log ("location_id required");
 			valid = false;
 		}
-		if ( parameters.reservation_id == '' ) {
-			console.log ("reservation_id required");
+		if ( !parameters.reservation_id || !parameters.rental_id ) {
+			console.log ("reservation_id or rental_id is required");
 			valid = false;
 		}
-		if ( parameters.gclid == '' ) {
-			console.log ("gclid required");
+		if ( !parameters.gclid || !parameters.gcid ) {
+			console.log ("gclid or gcid required");
 			valid = false;
 		}
-		if ( parameters.gcid == '' ) {
-			console.log ("gcid required");
-			valid = false;
+		if ( !parameters.url ) {
+			parameters.url = window.location.href;
 		}
 
 	    if( valid ) {
@@ -52,7 +45,7 @@
 			//console.log(date+' '+time);
 
 			var xhttp = new XMLHttpRequest();
-			xhttp.open("POST", "https://transmission-prod.tracking.callpotential.com/web-reservation/sitelink", true); 
+			xhttp.open("POST", "https://transmission-prod.tracking.callpotential.com/web-reservation", true); 
 			xhttp.setRequestHeader("Content-Type", "application/json");
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
@@ -63,14 +56,14 @@
 			};
 
 			xhttp.send(JSON.stringify({
-				corp_code : parameters.corp_code,
-				location_code : parameters.location_code,
+				pms_type : parameters.pms_type,
+				account_id : parameters.account_id,
+				location_id : parameters.location_id,
 				reservation_id : parameters.reservation_id,
+				rental_id : parameters.rental_id,
 				gclid : parameters.gclid,
 				gcid : parameters.gcid,
 				url : parameters.url,
-				//glsrc : '-',
-				//timestamp_utc: date+' '+time,
 			}));
 
 		}else{

@@ -12,8 +12,9 @@ This function should be called after the successful transmission of a lead into 
 
     let div = document.createElement('div');
     $(div).gc_tracking({
-          corp_code: 'CCTST',
-          location_code: 'TST',
+          pms_type: 'sitelink', // or 'centershift'
+          account_id: 'CCTST',
+          location_id: 'TST',
           reservation_id: '112222',
           gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
           gcid: '18208190227674681406',
@@ -22,13 +23,14 @@ This function should be called after the successful transmission of a lead into 
     document.body.appendChild(div);
     
 For transmission of rentals without an initial lead, use the following code:
-(notice the replacement of reservation_id with ledger_id)
+(notice the replacement of reservation_id with rental_id)
 
     let div = document.createElement('div');
     $(div).gc_tracking({
-          corp_code: 'CCTST',
-          location_code: 'TST',
-          ledger_id: '112222',
+          pms_type: 'sitelink', // or 'centershift'
+          account_id: 'CCTST',
+          location_id: 'TST',
+          rental_id: '112222',
           gclid: 'EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
           gcid: '18208190227674681406',
           url: 'https://www.abc.com/?gclid=EAIaIQobChMDnavM8gIVociUCR0RGAT-EAAYASAAEgIrXvD_BwE',
