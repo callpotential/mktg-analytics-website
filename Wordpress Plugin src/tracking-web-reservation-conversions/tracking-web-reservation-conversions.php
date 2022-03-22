@@ -140,6 +140,17 @@ function tracking_submit_to_api_endpoint() {
             )
         );
 
+        if ( !is_wp_error( $response ) ) {
+
+            $_SESSION['endpoint_submitted'] = $_SESSION['reservation']['reservation_id'];
+        }
+
+        echo '<div style="display:none" class="dev-103">';
+            echo "<pre>";print_r($_SESSION); 
+            print_r($response);
+            echo "</pre>";
+        echo '</div>';
+
        
         if( $_GET['dev'] ) {
 
